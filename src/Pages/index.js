@@ -7,9 +7,6 @@ import { registerScreens } from './registerScreens';
 
 registerScreens();
 
-
-
-
 let homeIcon;
 let homeOutlineIcon;
 let planetIcon;

@@ -8,6 +8,7 @@ export function registerScreens() {
 
   Navigation.registerComponent('home', () => Home);
   Navigation.registerComponent('admin', () => Admin);
+  
  
 }
 
