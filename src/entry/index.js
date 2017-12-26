@@ -1,8 +1,3 @@
-/**
- * @author: zhangyh-k@glondon.com
- * @description:
- * @Date: 17/3/19 上午2:00
- */
 
 
 const {Navigation} = require('react-native-navigation');
@@ -84,7 +79,7 @@ class App {
       tabs: [
         {
           label: '首页',
-          screen: 'app',
+          screen: 'Home',
           icon: homeOutlineIcon,
           selectedIcon: homeIcon,
           title: '首页',
@@ -112,7 +107,7 @@ class App {
 
         {
           label: '我的',
-          screen: 'app',
+          screen: 'Admin',
           icon: userIcon,
           selectedIcon: userOutlineIcon,
           title: '我的',

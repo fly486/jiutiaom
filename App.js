@@ -19,7 +19,7 @@ import {observer} from 'mobx-react/native';
 export default class App extends Component {
 
   @observable
-  a = 1
+  a = 2
 
   render() {
     return (
