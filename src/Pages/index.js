@@ -79,7 +79,7 @@ class App {
       tabs: [
         {
           label: '首页',
-          screen: 'Home',
+          screen: 'home',
           icon: homeOutlineIcon,
           selectedIcon: homeIcon,
           title: '首页',
@@ -88,7 +88,7 @@ class App {
 
         {
           label: '发现',
-          screen: 'app',
+          screen: 'home',
           icon: planetOutlineIcon,
           selectedIcon: planetIcon,
           title: '发现',
@@ -98,7 +98,7 @@ class App {
 
          {
          label: '购物车',
-         screen: 'app',
+         screen: 'admin',
          icon: cartIcon,
          selectedIcon: cartOutlineIcon,
          title: '购物车',
@@ -107,7 +107,7 @@ class App {
 
         {
           label: '我的',
-          screen: 'Admin',
+          screen: 'admin',
           icon: userIcon,
           selectedIcon: userOutlineIcon,
           title: '我的',

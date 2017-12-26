@@ -13,7 +13,7 @@ export default class BasicExample extends React.Component {
   componentDidMount() {
     Animated.timing(this.state.progress, {
       toValue: 1,
-      duration: 5000,
+      duration: 15000,
     }).start();
   }
 
@@ -22,7 +22,7 @@ export default class BasicExample extends React.Component {
     return (
       <LottieView
       style = {{width:140,height:140}}
-      source={require('../home/js/animations/9squares-AlBoardman.json')} progress={this.state.progress} />
+      source={require('../../Lottie/TwitterHeart.json')} progress={this.state.progress} />
     );
   }
 }
