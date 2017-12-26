@@ -10,6 +10,7 @@ export default class BasicExample extends React.Component {
     };
   }
 
+
   componentDidMount() {
     Animated.timing(this.state.progress, {
       toValue: 1,
