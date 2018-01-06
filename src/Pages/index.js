@@ -3,9 +3,10 @@
 const {Navigation} = require('react-native-navigation');
 const Icon = require('react-native-vector-icons/Ionicons');
 import { registerScreens } from './registerScreens';
-
-
-registerScreens();
+import Provider   from '../utils/Provider';
+import Store from '../Store/store'
+const rootStore = new Store();
+registerScreens(rootStore,Provider);
 
 let homeIcon;
 let homeOutlineIcon;
@@ -69,9 +70,6 @@ class App {
     });
   };
   startApp() {
-    // this will start our app
-
-
     Navigation.startTabBasedApp({
       tabs: [
         {
@@ -85,7 +83,7 @@ class App {
 
         {
           label: '发现',
-          screen: 'home',
+          screen: 'find',
           icon: planetOutlineIcon,
           selectedIcon: planetIcon,
           title: '发现',
@@ -122,7 +120,7 @@ class App {
       appStyle: {
         keepStyleAcrossPush: false //防止全部一个颜色
       },
-      passProps :{}
+      //passProps : {}
     });
   }
 }
