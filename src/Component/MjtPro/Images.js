@@ -1,58 +1,56 @@
-/**
- * @author: AnBo
- * @Date: 18/1/2 上午6:11
- */
-import React , { Component ,PureComponent} from 'react';
-import {
-    View,
-    Text,
-    StyleSheet,
-    Image,
-    Animated
-} from 'react-native';
-import {observer} from 'mobx-react';
-import {observable ,computed } from 'mobx';
+import React , {Component} from 'react'
+import {Image ,Platform ,View,Text} from 'react-native';
+const resolveAssetSource = require('resolveAssetSource')
+export default class MyImage extends Image {
+  viewConfig = Object.assign({} , this.viewConfig, {
+    validAttributes: Object.assign(
+      {},
+      this.viewConfig.validAttributes,
+      {[Platform.OS === 'ios' ? 'source' : 'src']: true})
+  });
 
-const styles = StyleSheet.create({
- 
- });
+  constructor() {
+    super();
+    this.setNativeProps = (props = {}) => {
 
-@observer
-export default class Images extends Component{
+      if (props.source) {
+        const source = resolveAssetSource(props.source);
+        let sourceAttr = Platform.OS === 'ios' ? 'source' : 'src';
+        let sources;
+        if (Array.isArray(source)) {
+          sources = source;
+        } else {
+          sources = [source];
+        }
+        Object.assign(props, {[sourceAttr]: sources});
+      }
 
-
-constructor(props){
-  super(props);
-  this.viewopcity = new Animated.Value(0.5)
-  this.imgOpcity = new Animated.Value(1)
+      return super.setNativeProps(props);
+    }
+  }
 }
 
 
+// 实现
+ class TestDemo extends Component {
 
-  _onLoad = () => {
-    Animated.timing(this.imgOpcity, {
-      toValue: 0,
-      duration: 200,
-      useNativeDriver: true, // <-- 加上这一行
-    }).start();
+  // 设置source
+  _setSource = ()  => {
+    this._refImg.setNativeProps({
+      source: {uri: 'https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2478206899,4000352250&fm=80&w=179&h=119&img.JPEG'}
+    });
   }
-  @computed get sx(){
-    if(this.props.root.speed > 5){
-      this.imgOpcity.setValue(1);
-    }
-    return false
-  }
-  render(){
 
-      this.imgOpcity.setValue(1);
-      return <Animated.View
-        style={[this.props.style]}
-        sx = {this.sx}
-      >
-        <Image source={this.props.source} style={this.props.style} onLoad ={this._onLoad } />
-        <Animated.Image
-          source={this.props.defaultSource}
-          style={[this.props.style,{backgroundColor:'white',position:'absolute',opacity:this.imgOpcity}]}/>
-      </Animated.View>
-  };
+  render() {
+    return(
+      <View >
+        <Text onPress={this._setSource}>88888</Text>
+      <MyImage
+        ref={c => this._refImg = c}
+        style={{width:80,height:80}}
+        source={{uri: 'https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=3497889018,3008123053&fm=80&w=179&h=119&img.JPEG'}} />
+      </View>
+        )
+  }
+
 }

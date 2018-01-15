@@ -1,14 +1,14 @@
 
 import React from 'react';
 import {View, Image} from 'react-native'
-import a from './menu'
 import {screen} from '../common'
 import api from '../utils/api'
 import MenuSVG from '../utils/menuSVG'
 import {Carousel} from 'antd-mobile'
 import MenuView from './menu'
+import a from './MjtPro/Images'
 
-export default class extends React.Component {
+export default class MM extends React.Component {
   onMenuSelected = (num) =>{
     alert(api.menuInfo[num])
   }

@@ -7,11 +7,13 @@ import {
   Dimensions,
   Image,
   TouchableHighlight,
+  requireNativeComponent
 } from 'react-native';
 
+var RNTMap = requireNativeComponent('MyView', null);
 import Header from '../index'
 import M from './MjtPro'
-import Images from './Images'
+import MyImage from './Images'
 const {height,width} = Dimensions.get('window')
 export default class ListViewDemo0 extends Component {
 
@@ -26,39 +28,7 @@ export default class ListViewDemo0 extends Component {
 
    */
 
-  renderItem111 = (data,i,root) => {
 
-
-    return(
-      <View style={{paddingBottom:10,flexDirection:'row',
-        borderWidth:0.5,borderColor:'#e0e0e0',backgroundColor:'white',height:130}}>
-        <View style={{height:120,width:120}}>
-
-
-           <Image
-            style={{height:120,width:120}}
-            source={{
-              uri: data.img,
-              cache:'force-cache'
-            }}
-
-          />
-
-
-        </View>
-        <View style={{flex:1,paddingLeft:10}}>
-          <View style={{flex:1,paddingTop:5}}>
-            <Text style={{fontSize:16,}} >{data.name}</Text>
-          </View>
-          <View style={{flex:1,justifyContent:'space-around'}}>
-            <Text  style={{color:"#dc143c",fontSize :20}}><Text style={{fontSize :10}} >¥</Text>{data.shop_pric}      <Text style={{fontSize:10,color:"#c0c0c0"}} >{data.goods_weight}kg</Text></Text>
-            <Text style={{fontSize:13,color:"#c0c0c0"}} >{data.goods_brief}+++{i}</Text>
-          </View>
-
-        </View>
-      </View>
-    )
-  };
 
   componentDidMount (){
     this.getMoviesFromApi()
@@ -146,7 +116,7 @@ export default class ListViewDemo0 extends Component {
           onRefresh = {this.onRefresh}
           renderHeader={this._renderHeader}
           data = {this.state.data}
-          renderItem={this.renderItem111}
+          renderItem={Item111}
           fetchMore = {this.fetchMore}
 
         />
@@ -168,4 +138,32 @@ export default class ListViewDemo0 extends Component {
   }
 }
 
+class Item111 extends React.Component{
+  page = this.props.page
+  shouldComponentUpdate(props){
+    if(props.page === this.page){
+      return false;
+    }
+    this.page = props.page;
+    this.ref.setNativeProps({
+      title:props.data.name,
+      name:props.data.tbid,
+      icon:props.data.img
+    })
+    return false;
+  }
+  render(){
+    const {data,i} = this.props
+    return(
+      <View style={{paddingBottom:10,flexDirection:'row',
+        borderWidth:0.5,borderColor:'#e0e0e0',backgroundColor:'white',height:130}}>
+        
+        <View style={{flex:1,paddingLeft:3}}>
+          <RNTMap ref = {ref=>this.ref = ref}icon = {data.img} title = {data.name} name = {data.tbid}/>
 
+
+        </View>
+      </View>
+    )
+  }
+}

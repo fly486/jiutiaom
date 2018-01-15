@@ -467,6 +467,14 @@ didReceiveResponse:(NSURLResponse *)response
                 /**  if you specified to only use cached data via `SDWebImageDownloaderIgnoreCachedResponse`,
                  *  then we should check if the cached data is equal to image data
                  */
+              //在这添加
+              // 将等比压缩过的image在赋在转成data赋给self.imageData
+              NSData *data = UIImageJPEGRepresentation(image, 1);
+              self.imageData = [NSMutableData dataWithData:data];
+              //
+              //
+              //
+              
                 if (self.options & SDWebImageDownloaderIgnoreCachedResponse && [self.cachedData isEqualToData:imageData]) {
                     // call completion block with nil
                     [self callCompletionBlocksWithImage:nil imageData:nil error:nil finished:YES];
@@ -511,6 +519,7 @@ didReceiveResponse:(NSURLResponse *)response
         }
     }
     [self done];
+  
 }
 
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential *credential))completionHandler {

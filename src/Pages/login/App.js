@@ -1,30 +1,20 @@
-import React from "react";
-import {
-  View,
-  TouchableOpacity,
-  Text,
-  StyleSheet,
-  ScrollView,
-  TextInput
-} from "react-native";
-import { Button } from 'antd-mobile';
-export default class App extends React.Component {
+import React, { Component } from 'react';
+import { requireNativeComponent ,View,Text} from 'react-native';
 
-  o = async () => {
-    try{
-      let response = await fetch('http://192.168.1.102:3002')
-      let responseJson = await response.json();
-      alert(JSON.stringify(response))
-    } catch (err){
-      alert(err)
-    }
+export default class MyView extends Component {
+ a = 1;
+  b = 10;
 
-  }
+  o = () => {
 
-  componentDidMount(){
-    this.o
-  }
-  render(){
-    return <Button>8888</Button>
-  }
+  setInterval(()=>{
+    this.ref.setNativeProps({name:(this.a++).toString(),title:(this.b++).toString()})
+  },1)
+}
+  render() {
+    return (
+      <View >
+
+      </View>)
+        }
 }

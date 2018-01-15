@@ -41,7 +41,6 @@ export default class MjtList extends Component {
 
     return(
       <Animated.ScrollView
-        onTouchStart = {this.mobx.onTouchStart}
         scrollEventThrottle = {15}
         {...this.props} ref = {a => this.ScrollViewRef = a } onScroll={this.mobx.onScroll}>
         <View onLayout={this.mobx.contentLayout} >

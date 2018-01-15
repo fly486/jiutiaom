@@ -10,11 +10,11 @@
 
 @interface MyView : UIView
 @property (nonatomic,strong) NSString* name;
-@property (nonatomic,strong) NSString* title;
+@property (nonatomic,copy) NSString* title;
+@property (nonatomic,strong) NSString* icon;
 @property (nonatomic,strong) UILabel * lable;
 @property (nonatomic,strong) UILabel * lable1;
 @property (nonatomic,strong) UIImageView * img;
-
 -(instancetype) initWinthMyView;
 
 @end
